@@ -1,0 +1,19 @@
+[
+	{
+		"key": "cmd+r",
+		"command": "workbench.action.tasks.runTask",
+		"args": "run test rust",
+		"when": "editorLangId == rust"
+	},
+	{
+		"key": "cmd+shift+r",
+		"command": "workbench.action.tasks.runTask",
+		"args": "run rust",
+		"when": "editorLangId == rust"
+	},
+	{
+		"key": "shift+cmd+r",
+		"command": "-rerunSearchEditorSearch",
+		"when": "inSearchEditor"
+	}
+]

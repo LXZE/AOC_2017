@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "run haskell test",
+			"type": "shell",
+			"command": "DAY=$(basename ${relativeFileDirname}); cabal run $DAY test",
+		},
+    {
+			"label": "run haskell",
+			"type": "shell",
+			"command": "DAY=$(basename ${relativeFileDirname}); cabal run $DAY",
+		},
+	]
+}
