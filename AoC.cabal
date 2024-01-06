@@ -11,13 +11,14 @@ common src
 
 common flags
   default-language: Haskell2010
+  ghc-options:
 
 library
   hs-source-dirs:  lib
-  build-depends:   base, directory
+  build-depends:   base, directory, clock
   exposed-modules: Utils
 
 executable 01
-  main-is:      src/01/Solution.hs
   import:       src, flags
   build-depends: base, aoc
+  main-is:      01/Solution.hs
