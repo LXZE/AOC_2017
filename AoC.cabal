@@ -14,10 +14,10 @@ common flags
 
 library
   hs-source-dirs:  lib
-  build-depends:   base
+  build-depends:   base, directory
   exposed-modules: Utils
 
 executable 01
   main-is:      src/01/Solution.hs
   import:       src, flags
-  build-depends: base, aoc, directory
+  build-depends: base, aoc

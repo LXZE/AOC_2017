@@ -1,18 +1,18 @@
 [
 	{
-		"key": "cmd+r",
+		"key": "ctrl+r",
 		"command": "workbench.action.tasks.runTask",
-		"args": "run test rust",
-		"when": "editorLangId == rust"
+		"args": "run haskell test",
+		"when": "editorLangId == haskell"
 	},
 	{
-		"key": "cmd+shift+r",
+		"key": "ctrl+shift+r",
 		"command": "workbench.action.tasks.runTask",
-		"args": "run rust",
-		"when": "editorLangId == rust"
+		"args": "run haskell",
+		"when": "editorLangId == haskell"
 	},
 	{
-		"key": "shift+cmd+r",
+		"key": "ctrl+shift+r",
 		"command": "-rerunSearchEditorSearch",
 		"when": "inSearchEditor"
 	}

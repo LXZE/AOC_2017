@@ -1,12 +1,10 @@
 import Utils (
   getInput, getRawInput,
-  assertSolution, runSolution
+  runSolution, assertSolution
   )
 
-import Debug.Trace (trace)
 import System.Environment (getArgs, getProgName)
-import System.Directory (getCurrentDirectory)
-import Data.Foldable
+import Data.Foldable (for_)
 
 part1 :: [String] -> IO (Maybe Int)
 part1 s = do

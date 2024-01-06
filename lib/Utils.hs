@@ -1,9 +1,9 @@
 module Utils where
 
-import System.Environment (getArgs)
+import Text.Printf ( printf )
 import System.IO (readFile)
-import GHC.IO.Exception (IOErrorType(UserError))
-import Data.Monoid (Any)
+import System.Exit ( ExitCode(ExitFailure), exitWith )
+import Control.Exception (catch, SomeException)
 
 inputFile :: String -> String
 inputFile date = "src/" ++ date ++ "/input.txt"
@@ -12,7 +12,11 @@ getInput :: String -> IO [String]
 getInput date = lines <$> getRawInput date
 
 getRawInput :: String -> IO String
-getRawInput date = readFile $ inputFile date
+getRawInput date = catch (readFile $ inputFile date) handler
+  where
+    handler :: SomeException -> IO String
+    handler ex = printf "\n[ERR] src/%s/input.txt not found, exit with code 1\n" date
+      >> exitWith (ExitFailure 1)
 
 assertSolution :: Eq a => Int -> ([String] -> IO (Maybe a)) -> [String] -> a -> IO ()
 assertSolution part fn input expect = do
