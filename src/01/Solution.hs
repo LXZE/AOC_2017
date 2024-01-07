@@ -7,20 +7,20 @@ import System.Environment (getArgs, getProgName)
 import Data.Foldable (for_)
 import Data.Char (digitToInt)
 
-dup_head :: Int -> String -> String
-dup_head size str = take (length str + size) (cycle str)
+dupHead :: Int -> String -> String
+dupHead size str = take (length str + size) (cycle str)
 
 pair :: [Int] -> [(Int, Int)]
-pair (x:xs) | length xs > 0 = [(x, xs !! 0)] ++ pair xs
+pair (x:xs) | not (null xs) = (x, head xs) : pair xs
 pair _ = []
 
 pair' :: [Int] -> [(Int, Int)]
-pair' (x:xs) = [(x, xs !! (x - 1))] ++ pair xs
+pair' (x:xs) = (x, xs !! (x - 1)) : pair xs
 pair' _ = []
 
 part1 :: [String] -> IO (Maybe Int)
 part1 [str] = do
-  let res = sum $ map fst $ filter (\(a, b) -> a == b) $ pair $ map digitToInt (dup_head 1 str)
+  let res = sum $ map fst $ filter (uncurry (==)) $ pair $ map digitToInt (dupHead 1 str)
   return (Just res)
 
 part2 :: [String] -> IO (Maybe Int)

@@ -39,8 +39,6 @@ runSolution part fn input = do
   start <- getTime Monotonic
   result <- fn input
   stop <- getTime Monotonic
-  putStrLn $ case result of
-    Nothing -> "No result"
-    Just result -> show result
+  putStrLn $ maybe "No result" show result
   printf "Exec time: %d ns\n" (toNanoSecs $ diffTimeSpec stop start)
   putStrLn ""

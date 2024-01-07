@@ -11,9 +11,9 @@ common src
 
 common flags
   default-language: Haskell2010
-  ghc-options:
 
 library
+  import:          flags
   hs-source-dirs:  lib
   build-depends:   base, directory, clock
   exposed-modules: Utils
