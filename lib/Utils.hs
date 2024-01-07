@@ -7,6 +7,10 @@ import System.Exit ( ExitCode(ExitFailure), exitWith )
 import Control.Exception (catch, SomeException)
 import Control.Monad (join)
 import System.Clock
+import Data.Text (strip, unpack, pack, split)
+
+chomp :: String -> String
+chomp = unpack . strip . pack
 
 inputFile :: String -> String
 inputFile date = "src/" ++ date ++ "/input.txt"
@@ -28,7 +32,7 @@ assertSolution part fn input expect = do
   result <- fn input
   stop <- getTime Monotonic
   case result of
-    Nothing -> printf "No result"
+    Nothing -> printf "No result\n"
     Just result -> printf "Expect %s | Result %s (%s)\n" (show expect) (show result) (show $ expect == result)
   printf "Exec time: %d ns\n" (toNanoSecs $ diffTimeSpec stop start)
   putStrLn ""
@@ -39,6 +43,6 @@ runSolution part fn input = do
   start <- getTime Monotonic
   result <- fn input
   stop <- getTime Monotonic
-  putStrLn $ maybe "No result" show result
+  putStrLn $ maybe "No result\n" show result
   printf "Exec time: %d ns\n" (toNanoSecs $ diffTimeSpec stop start)
   putStrLn ""

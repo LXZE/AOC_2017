@@ -8,6 +8,11 @@ extra-source-files: CHANGELOG.md
 
 common src
   hs-source-dirs: src
+  build-depends:
+    base,
+    aoc,
+    text,
+    raw-strings-qq
 
 common flags
   default-language: Haskell2010
@@ -15,10 +20,13 @@ common flags
 library
   import:          flags
   hs-source-dirs:  lib
-  build-depends:   base, directory, clock
+  build-depends:   base, directory, clock, text
   exposed-modules: Utils
 
 executable 01
   import:       src, flags
-  build-depends: base, aoc
   main-is:      01/Solution.hs
+
+executable 02
+  import:       src, flags
+  main-is:      02/Solution.hs
