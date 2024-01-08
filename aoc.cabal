@@ -12,6 +12,8 @@ common src
     base,
     aoc,
     text,
+    containers,
+    array,
     raw-strings-qq
 
 common flags
@@ -30,3 +32,7 @@ executable 01
 executable 02
   import:       src, flags
   main-is:      02/Solution.hs
+
+executable 03
+  import:       src, flags
+  main-is:      03/Solution.hs
