@@ -22,7 +22,7 @@ common flags
 library
   import:          flags
   hs-source-dirs:  lib
-  build-depends:   base, directory, clock, text
+  build-depends:   base, directory, text, timeit
   exposed-modules: Utils
 
 executable 01
@@ -40,3 +40,7 @@ executable 03
 executable 04
   import:       src, flags
   main-is:      04/Solution.hs
+
+executable 05
+  import:       src, flags
+  main-is:      05/Solution.hs
