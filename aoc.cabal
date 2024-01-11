@@ -44,3 +44,7 @@ executable 04
 executable 05
   import:       src, flags
   main-is:      05/Solution.hs
+
+executable 06
+  import:       src, flags
+  main-is:      06/Solution.hs

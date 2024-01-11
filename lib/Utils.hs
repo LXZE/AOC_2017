@@ -6,6 +6,7 @@ import System.Exit ( ExitCode(ExitFailure), exitWith )
 import Control.Exception (catch, SomeException)
 import Data.Text (strip, unpack, pack, split)
 import System.TimeIt (timeItT)
+import Data.Maybe (fromMaybe)
 
 chomp :: String -> String
 chomp = unpack . strip . pack
@@ -26,7 +27,7 @@ getRawInput date = catch (readFile $ inputFile date) handler
 diffTime :: Integer -> Integer -> Integer
 diffTime stop start = (fromIntegral stop - start) `quot` (10^6)
 
-assertSolution :: (Eq a, Show a) => Int -> ([String] -> IO (Maybe a)) -> [String] -> a -> IO ()
+assertSolution :: (Eq a, Show a) => Int -> (b -> IO (Maybe a)) -> b -> a -> IO ()
 assertSolution part fn input expect = do
   putStrLn $ "Part " ++ show part
   (sec, result) <- timeItT $ fn input
