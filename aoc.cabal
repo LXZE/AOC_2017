@@ -56,3 +56,73 @@ executable 07
 executable 08
   import:       src, flags
   main-is:      08/Solution.hs
+
+executable 09
+  import:       src, flags
+  main-is:      09/Solution.hs
+
+executable 10
+  import:       src, flags
+  main-is:      10/Solution.hs
+
+executable 11
+  import:       src, flags
+  main-is:      11/Solution.hs
+
+executable 12
+  import:       src, flags
+  main-is:      12/Solution.hs
+
+executable 13
+  import:       src, flags
+  main-is:      13/Solution.hs
+
+executable 14
+  import:       src, flags
+  main-is:      14/Solution.hs
+
+executable 15
+  import:       src, flags
+  main-is:      15/Solution.hs
+
+executable 16
+  import:       src, flags
+  main-is:      16/Solution.hs
+
+executable 17
+  import:       src, flags
+  main-is:      17/Solution.hs
+
+executable 18
+  import:       src, flags
+  main-is:      18/Solution.hs
+
+executable 19
+  import:       src, flags
+  main-is:      19/Solution.hs
+
+executable 20
+  import:       src, flags
+  main-is:      20/Solution.hs
+
+executable 21
+  import:       src, flags
+  main-is:      21/Solution.hs
+
+executable 22
+  import:       src, flags
+  main-is:      22/Solution.hs
+
+executable 23
+  import:       src, flags
+  main-is:      23/Solution.hs
+
+executable 24
+  import:       src, flags
+  main-is:      24/Solution.hs
+
+executable 25
+  import:       src, flags
+  main-is:      25/Solution.hs
+
+
