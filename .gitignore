@@ -24,3 +24,5 @@ cabal.project.local~
 
 dist-newstyle/
 input.txt
+inputs/*.txt
+.env

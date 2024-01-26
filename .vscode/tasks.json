@@ -4,12 +4,12 @@
 		{
 			"label": "run haskell test",
 			"type": "shell",
-			"command": "DAY=$(basename ${relativeFileDirname}); cabal run $DAY test",
+			"command": "cabal run ${fileBasenameNoExtension} test",
 		},
     {
 			"label": "run haskell",
 			"type": "shell",
-			"command": "DAY=$(basename ${relativeFileDirname}); cabal run $DAY",
+			"command": "cabal run ${fileBasenameNoExtension}",
 		},
 	]
 }

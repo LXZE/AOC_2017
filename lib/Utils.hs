@@ -12,7 +12,7 @@ chomp :: String -> String
 chomp = unpack . strip . pack
 
 inputFile :: String -> String
-inputFile date = "src/" ++ date ++ "/input.txt"
+inputFile date = "inputs/" ++ date ++ ".txt"
 
 getInput :: String -> IO [String]
 getInput date = lines <$> getRawInput date
@@ -21,7 +21,7 @@ getRawInput :: String -> IO String
 getRawInput date = catch (readFile $ inputFile date) handler
   where
     handler :: SomeException -> IO String
-    handler ex = printf "\n[ERR] src/%s/input.txt not found, exit with code 1\n" date
+    handler ex = printf "\n[ERR] inputs/%s.txt not found, exit with code 1\n" date
       >> exitWith (ExitFailure 1)
 
 diffTime :: Integer -> Integer -> Integer
