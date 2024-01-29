@@ -22,7 +22,7 @@ common flags
 library
   import:          flags
   hs-source-dirs:  lib
-  build-depends:   base, directory, text, timeit
+  build-depends:   base, directory, text, time, deepseq
   exposed-modules: Utils
 
 executable 01
