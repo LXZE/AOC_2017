@@ -14,10 +14,30 @@ common src
     text,
     containers,
     array,
+    transformers,
     raw-strings-qq
 
 common flags
   default-language: Haskell2010
+  default-extensions:
+    TupleSections,
+    LambdaCase,
+    MultiWayIf,
+    BlockArguments,
+    TypeOperators,
+    NumericUnderscores,
+    OverloadedStrings,
+    ViewPatterns,
+    PatternSynonyms,
+    ScopedTypeVariables,
+    NamedFieldPuns,
+    RecordWildCards,
+    FlexibleInstances,
+    FlexibleContexts,
+    InstanceSigs,
+    DataKinds,
+    QuasiQuotes
+
 
 library
   import:          flags
