@@ -32,6 +32,20 @@ timeit action input = do
   end <- deepseq result getCurrentTime
   return (realToFrac $ diffUTCTime end start, result)
 
+getUnit :: Int -> String
+getUnit 0 = "seconds"
+getUnit (-3) = "ms"
+getUnit (-6) = "μs"
+getUnit (-9) = "ns"
+getUnit (-12) = "ps"
+getUnit v = error "unexpected prefix value " ++ show v
+
+divideTime :: (Double, Int) -> (Double, Int)
+divideTime (value, power)
+  | value > 1 = (value, power)
+  | power <= (-12) = (value, power)
+  | otherwise = divideTime (value * 1000, power - 3)
+
 assertSolution :: (NFData a, NFData b, Eq a, Show a) =>
   Int -> (b -> IO (Maybe a)) -> b -> a -> IO ()
 assertSolution part fn input expect = do
@@ -40,7 +54,8 @@ assertSolution part fn input expect = do
   case result of
     Nothing -> print "No result"
     Just result -> printf "Expect %s | Result %s (%s)\n" (show expect) (show result) (show $ expect == result)
-  printf "Exec time: %f seconds\n\n" sec
+  let (value, getUnit -> unit) = divideTime (sec, 0)
+  printf "Exec time: %.2g %s\n\n" value unit
 
 runSolution :: (NFData a, NFData b, Show b) =>
   Int -> (a -> IO (Maybe b)) -> a -> IO ()
@@ -48,4 +63,5 @@ runSolution part fn input = do
   putStrLn $ "Part " ++ show part
   (sec, result) <- timeit fn input
   putStrLn $ maybe "No result" show result
-  printf "Exec time: %f seconds\n\n" sec
+  let (value, getUnit -> unit) = divideTime (sec, 0)
+  printf "Exec time: %.2g %s\n\n" value unit
