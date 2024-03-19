@@ -33,7 +33,7 @@ existInWorld pos (World { map }) = Map.member pos map
 
 findNextPos :: World -> Pos -> Pos-> Maybe Pos
 findNextPos world prevPos pos = case filter filterFn $ getAdjacent pos of
-  x:[] -> Just x
+  [x] -> Just x
   other -> trace (show (prevPos, pos, other)) $ error "filter should return list length 1"
   where filterFn candidate = candidate /= prevPos && existInWorld candidate world
 
@@ -41,7 +41,7 @@ convertToWorld :: [String] -> World
 convertToWorld m = World {
   map = Map.fromList [((row, col), ch) | (row, r) <- zip [0..] m, (col, ch) <- zip [0..] r, ch /= ' '],
   maxRow = length m - 1,
-  maxCol = length (m !! 0) - 1
+  maxCol = length (head m) - 1
 }
 
 getPosChar :: World -> Pos -> Char
@@ -83,11 +83,11 @@ stateFn world (Just pos) cursor = let
     stateFn world nextPos nextCursor
 
 runState :: Pos -> World -> String
-runState startPos world = reverse.snd.snd $ State.runState (stateFn world (Just startPos) Down) (startPos, "")
+runState startPos world = (reverse . snd) (State.execState (stateFn world (Just startPos) Down) (startPos, ""))
 
 part1 :: [String] -> IO (Maybe String)
 part1 map@(x:_) = do
-  let startCol = Maybe.fromJust $ List.findIndex (=='|') x
+  let startCol = Maybe.fromJust $ List.elemIndex '|' x
   let world = convertToWorld map
   let result = runState (0, startCol) world
 
@@ -113,18 +113,18 @@ stateFn' world (Just pos) cursor = let
     stateFn' world nextPos nextCursor
 
 runState' :: Pos -> World -> Int
-runState' startPos world = snd.snd $ State.runState (stateFn' world (Just startPos) Down) (startPos, 0)
+runState' startPos world = snd (State.execState (stateFn' world (Just startPos) Down) (startPos, 0))
 
 part2 :: [String] -> IO (Maybe Int)
 part2 map@(x:_) = do
-  let startCol = Maybe.fromJust $ List.findIndex (=='|') x
+  let startCol = Maybe.fromJust $ List.elemIndex '|' x
   let world = convertToWorld map
   let result = runState' (0, startCol) world
 
   return $ Just result
 
 testData :: [String]
-testData = snd <$> Maybe.fromJust $ List.uncons $ lines $ [r|
+testData = snd <$> Maybe.fromJust $ List.uncons $ lines [r|
      |
      |  +--+
      A  |  C
